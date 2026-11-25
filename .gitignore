@@ -1,0 +1,77 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### 설계 문서와 산출물 (저장소 밖에서 관리) ###
+docs/
+*.docx
+*.doc
+~$*
+*.mmd
+# Markdown은 README와 역할 모듈 프롬프트만 올린다
+*.md
+!README.md
+!**/prompts/*.md
+
+# 환경 변수와 비밀 값
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+.aws/
+# 로컬 데이터와 로그
+*.sqlite
+*.sqlite3
+*.log
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+# Node
+node_modules/
+# OS
+Thumbs.db
+.DS_Store
