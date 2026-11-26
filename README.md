@@ -19,7 +19,7 @@ React 화면 → Nginx → Spring Boot API → PostgreSQL 작업 큐 → Python 
 
 ## 로컬 개발 환경
 
-PostgreSQL 17과 S3 호환 저장소(MinIO)를 Docker Compose로 띄운다. `up --wait`와 Compose 파일의 최상위 `name`을 지원하는 Docker Compose(v2.3.3 이상)가 필요하고, 전체 기동은 v5.6.0에서 확인했다.
+PostgreSQL 17.12와 S3 호환 저장소(MinIO)를 Docker Compose로 띄운다. `up --wait`와 Compose 파일의 최상위 `name`을 지원하는 Docker Compose(v2.3.3 이상)가 필요하고, 전체 기동은 v5.6.0에서 확인했다.
 
 1. `.env.example`을 복사해 `.env`를 만들고 "로컬 Compose" 항목의 값을 채운다. 값이 비어 있으면 Compose가 기동을 멈춘다.
 2. 저장소 루트에서 실행한다. Compose 파일이 `deploy/`에 있어 `--env-file .env`를 꼭 붙인다. 터미널에 같은 이름의 환경 변수가 있으면 `.env`보다 그 값이 먼저 쓰인다.
