@@ -58,6 +58,19 @@ docs/
 credentials*.json
 service-account*.json
 .aws/
+# LATS 파일과 도면 (실제 자료는 로컬 경로에서 읽는다)
+# 대소문자를 가리는 설정에서도 걸리도록 확장자를 두 경우 모두 적는다
+*.[sS][hH][dD]
+*.[sS][hH][dD][xX]
+*.[hH][vV][cC]
+*.[dD][wW][gG]
+*.[dD][xX][fF]
+# 앱 빌드 결과와 서명 파일
+*.[aA][pP][kK]
+*.[aA][aA][bB]
+*.[iI][pP][aA]
+*.[jJ][kK][sS]
+key.properties
 # 로컬 데이터와 로그
 *.sqlite
 *.sqlite3
