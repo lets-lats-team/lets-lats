@@ -1,0 +1,20 @@
+# 환경변수 및 비밀 정보
+.env
+.env.*
+*.pem
+*.key
+
+# 개발 환경 및 빌드 결과
+node_modules/
+dist/
+
+# 내부 자료
+private/
+secrets/
+*.dwg
+*.dxf
+*.shd
+*.shdx
+*.pdf
+*.xlsx
+*.csv
