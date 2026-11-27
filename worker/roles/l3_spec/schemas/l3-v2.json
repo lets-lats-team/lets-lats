@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task", "rules"],
+  "properties": {
+    "task": {"type": "string", "enum": ["SPEC_RULES"]},
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clause_no", "item", "attribute", "operator", "value", "unit", "quote"],
+        "properties": {
+          "clause_no": {"type": "string"},
+          "item": {"type": "string"},
+          "attribute": {"type": "string"},
+          "operator": {"type": "string", "enum": ["=", "!=", ">=", "<=", ">", "<"]},
+          "value": {"type": "string"},
+          "unit": {"type": "string"},
+          "quote": {"type": "string"}
+        }
+      }
+    }
+  }
+}
