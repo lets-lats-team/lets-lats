@@ -1,0 +1,12 @@
+# Evaluation tools and tests (includes worker dependencies)
+-r ../worker/requirements.txt
+# Real model calls (keys only via ANTHROPIC_API_KEY / OPENAI_API_KEY environment variables)
+anthropic==2.13.0
+openai==3.58.0
+httpx==0.28.1
+httpx2==2.13.1
+# Vision test kit
+ezdxf==1.4.5
+matplotlib==3.11.2
+pillow==12.3.0
+pytest==9.1.1

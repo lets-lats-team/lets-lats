@@ -1,0 +1,12 @@
+# 평가 원본·정답·모델 출력은 올리지 않는다 (나라장터 원본은 공개 권한 미확인)
+results/
+work/
+data/
+review/
+*.hwp
+*.hwpx
+*.pdf
+*.xlsx
+*.xls
+*API_KEY*.txt
+*_api_key.txt

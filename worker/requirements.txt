@@ -1,0 +1,8 @@
+# Worker AI role (L2, L3) runtime dependencies. Tested on Python 3.12. Pin exact versions (==).
+openpyxl==3.1.5          # L2 BOQ .xlsx
+xlrd==2.0.2              # L2 legacy .xls
+olefile==0.47
+pymupdf==1.28.2          # L3 PDF text layer
+hwp-hwpx-parser==1.0.0   # L3 HWP/HWPX
+pydantic==2.14.1         # role module contract
+jsonschema==4.26.0
