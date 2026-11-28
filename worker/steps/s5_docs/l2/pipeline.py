@@ -16,8 +16,8 @@
 코드 안전장치 (2026-11-25)
 - 수량 시트 규칙 (결정 가): 1단계가 PENDING이어도 원가계산서·일위대가 등을 Y로 답했으면 HELD/AI_OUT_OF_DOMAIN.
   ItemResult.rules에 규칙 이름, 시트 메모에 사유. 모델 답은 candidates에 남는다.
-- 품목 내보내기 (Codex 3-2): 품명·단위·수량 열이 모두 PENDING일 때만 4단계를 한다. 아니면 메모에 사유.
-- 머리글 미탐지 (Codex 3-3): 메모에 어느 행에 무엇만 있었는지 남긴다 (boq_header.header_diagnosis).
+- 품목 내보내기: 품명·단위·수량 열이 모두 PENDING일 때만 4단계를 한다. 아니면 메모에 사유.
+- 머리글 미탐지: 메모에 어느 행에 무엇만 있었는지 남긴다 (boq_header.header_diagnosis).
 """
 from __future__ import annotations
 
@@ -134,7 +134,7 @@ def run_l2(path: str | Path, call: Caller, primary: str, verifier: str | None = 
             for r in rt["payload"]["meta"]["rows"]:
                 sr.rows[r] = _merge(perr, r, primary, verifier)
         missing = _missing_item_cols(sr)
-        if missing:   # Codex 3-2: 품명·단위·수량 열 중 하나라도 확정 후보(PENDING)가 아니면 품목을 내보내지 않는다
+        if missing:   # 수량 없는 품목이 나가지 않게: 품명·단위·수량 열 중 하나라도 확정 후보(PENDING)가 아니면 품목을 내보내지 않는다
             sr.items_blocked = missing
             _add_note(sr, "품목 내보내지 않음: " + "; ".join(missing) + " (행 분류 결과는 남김)")
             continue

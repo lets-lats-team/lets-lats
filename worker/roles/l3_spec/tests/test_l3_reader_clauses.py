@@ -146,7 +146,7 @@ def test_real_specs(sid):
         assert "제2장 3. 8)" in d.clauses and "1.2 ~1.5 m" in d.clauses["제2장 3. 8)"].text
     if sid == "S25":
         assert "3.2 3. 8)" in d.clauses and "1.1.14 4) 3)" in d.clauses
-        assert "실외노출 배관 트레이" in d.clauses["3.2 4. 2)"].text                 # 한 줄에 붙은 2) 나눔 (Codex 4-4)
+        assert "실외노출 배관 트레이" in d.clauses["3.2 4. 2)"].text                 # 한 줄에 붙은 2) 나눔
         assert "실외노출 배관 트레이" not in d.clauses["3.2 4. 1)"].text
     if sid == "S24":
         assert "□2 3. 아." in d.clauses and "1.5～2m" in d.clauses["□2 3. 아."].text

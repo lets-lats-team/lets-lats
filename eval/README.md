@@ -1,21 +1,21 @@
 # 평가 키트
 
 - **Vision 시험 키트 v0.1** (이 문서): 도면 crop을 모델이 얼마나 정확히 읽는지 자동 채점
-- **L2·L3 정답셋**: 공식 정답셋은 `실전프로젝트/03_수집_3년/정답셋_후보/` (S24·S25·S26, `정답_입력완.xlsx`)이다. 기능명세 6.1 기준(같은 공고의 도면·내역서·시방서 세트)에 맞는다.
+- **L2·L3 정답셋**: 공식 정답셋은 데이터 폴더(환경 변수 `LETS_DATA_ROOT`)의 정답셋 폴더 (S24·S25·S26, `정답_입력완.xlsx`)이다. 기능 명세 v0.9 6.1 기준(같은 공고의 도면·내역서·시방서 세트)에 맞는다.
 - `data/text_v0.1/`은 **사용하지 않는다 (보류).** 기존 정답셋을 모르고 따로 만든 5세트로, 정답셋을 늘릴 때 후보로만 쓴다. 코드 값이 기존 정답셋과 다르니 그 안의 LABELING_GUIDE.md·check_labels.py로 정답을 달지 않는다.
 
 # Vision 시험 키트 v0.1
 
 벡터에서 뽑은 글자를 정답으로 삼아, 도면 이미지를 모델이 얼마나 정확히 읽는지 자동으로 채점한다.
-근거: AI 설계 v0.4 3장(실물 시험), 10장(입력 준비), 14장(평가 계획), 멀티에이전트 구성안 8.1(`eval/run_vision_eval.py`).
+근거: AI 설계 v0.8 3장(실물 시험), 10장(입력 준비), 14장(평가 계획), 멀티에이전트 구성 v0.8 8.1(`eval/run_vision_eval.py`).
 
 ## 빠른 실행
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt   # Windows: 주석은 영어라 cp949에서도 설치된다
 
 # 1) 데이터 만들기 (DWG→DXF→글자 추출→crop·정답). 약 2분. 이미 data/에 만들어져 있으면 생략
-python prepare_vision_kit.py --dwg "../../02_1년치_조사/3_도면판정_78건/DWG모음/R26BK01381968_고려대 도면.dwg"
+python prepare_vision_kit.py --dwg "<도면 경로>"
 
 # 2) 채점기 자체 점검 (100%가 나와야 정상)
 python run_vision_eval.py --provider gt

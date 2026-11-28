@@ -119,7 +119,7 @@ def test_runner_end_to_end(ans, tmp_path):
     assert (run_dir / "S24_L3_조건.csv").exists() and (run_dir / "S24-공고_L3_조건.csv").exists()
 
 
-# ---- 2026-11-26 Codex 4-1·5-1: 같은 키 결과 중복, 같은 키 정답 중복 ----
+# ---- 2026-11-26: 같은 키 결과 중복, 같은 키 정답 중복 ----
 
 def _res(key, status, value, unit="m", hold=None, tk="t0"):
     from types import SimpleNamespace as N

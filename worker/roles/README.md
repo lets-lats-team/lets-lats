@@ -1,6 +1,6 @@
 # AI 역할 L2·L3와 평가 도구 (김선진)
 
-AI 설계 v0.7(11.4 역할 모듈 계약 1.1) 기준으로 만든 AI 역할 코드와, 실제 모델을 정답셋과 맞대 보는 평가 도구.
+AI 설계 v0.8(11.4 역할 모듈 계약 1.1) 기준으로 만든 AI 역할 코드와, 실제 모델을 정답셋과 맞대 보는 평가 도구.
 
 ## 폴더
 
@@ -25,7 +25,7 @@ python -X utf8 -m pytest -q -p no:cacheprovider worker/roles worker/tests eval/t
 ## 저장소에 없는 것
 
 - **나라장터 원본(HWP·PDF·XLSX·DWG)과 정답 엑셀**: 공개 권한 미확인이라 넣지 않았다. 평가를 돌리려면 `03_수집_3년/`(원본·`정답셋_후보/정답_입력완.xlsx`)이 있는 폴더를 환경 변수 `LETS_DATA_ROOT`로 준다. 없으면 이 저장소의 상위 폴더를 본다
-- **평가 결과(`eval/results/`)·시험 키트(`eval/data/`)·Codex·Gemini 검증 산출물**: 원문 인용과 모델 출력이 들어 있어 넣지 않았다(`eval/.gitignore`). 문서에 이 경로가 나오면 로컬 기록을 가리킨다
+- **평가 결과(`eval/results/`)·시험 키트(`eval/data/`)·외부 검증 산출물(`eval/review/`)**: 원문 인용과 모델 출력이 들어 있어 넣지 않았다(`eval/.gitignore`). 문서에 이 경로가 나오면 로컬 기록을 가리킨다
 - **설계 문서·트러블슈팅 기록**: 팀 규칙(`.gitignore`의 `docs/`, `*.md`)대로 저장소 밖에서 관리한다
 - **API 키**: `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` 환경 변수로만 받는다. 파일로 두지 않는다
 

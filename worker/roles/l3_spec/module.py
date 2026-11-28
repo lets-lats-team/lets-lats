@@ -1,4 +1,4 @@
-"""L3 시방서·공고문 조건 추출 역할 모듈 (AI 설계 v0.7 11.4 'L3 적용 예', 계약 1.1).
+"""L3 시방서·공고문 조건 추출 역할 모듈 (AI 설계 v0.8 11.4 'L3 적용 예', 계약 1.1).
 
 대상 문서: SPEC(시방서), NOTICE(공고문/현장설명서). 읽기·조항 나누기·프롬프트(l3-v3)는 둘 다 같다.
 프롬프트 안에 공고문 규칙과 공사 방식 행 규칙이 있다 (공사 방식: item '냉매 배관', attribute '공사 방식', value R01 4종 코드).
@@ -7,7 +7,7 @@ prepare     시방서 하나 → 조항 묶음 작업들. 조항 단위로 chunk
             모델에는 [[clause_no]] 줄 + 조항 자신의 원문만 보낸다. private에 G2 대조용 원문(하위 조항 포함)과 쪽 정보.
 postprocess 규칙 하나 = Candidate 하나. clause_no 맞추기, 정규화, G2 인용문 대조(글자 값·공사 방식 근거 포함),
             G3 공사 방식 형식, G3 범위 값, G3 숫자·단위 붙여 씀, G3 단위 (checks.py)
-            clause_no 맞추기 (2026-11-26 김선진 결정, Codex 2-2): 모델이 든 조항 원문(하위 포함)에 quote가 있으면,
+            clause_no 맞추기 (2026-11-26 김선진 결정): 모델이 든 조항 원문(하위 포함)에 quote가 있으면,
             quote가 조항 자신의 본문에 없고 하위 조항 하나에만 있을 때 그 하위로 내려간다 (가장 아래 번호 — 정답과 같은 규칙).
             든 조항에 quote가 없으면 '#2' 꼬리만 다른 같은 번호 중 quote가 있는 조항이 하나일 때 그것으로 바꾼다.
             인용문 대조 자체는 그대로다 (모델이 든 번호 범위 밖으로는 옮기지 않음)
@@ -90,7 +90,7 @@ class L3SpecModule:
         lim = ctx.limits()
         header = ctx.count_tokens(HEADER.format(n=999, total=999))
         overhead = ctx.count_tokens(self.system_prompt) + header
-        # 묶음 크기(chunk_tokens)는 머리말을 포함한 사용자 글 전체 (2026-11-26 Codex 4-3: 머리말만큼 넘던 것)
+        # 묶음 크기(chunk_tokens)는 머리말을 포함한 사용자 글 전체 (2026-11-26: 머리말만큼 넘던 것)
         budget = min((lim.chunk_tokens or DEFAULT_CHUNK_TOKENS) - header, lim.max_prompt_tokens - overhead)
         if budget <= 0:
             raise RoleInputError("PARSE_FAILED", doc.id, "시스템 프롬프트가 max_prompt_tokens를 넘음")

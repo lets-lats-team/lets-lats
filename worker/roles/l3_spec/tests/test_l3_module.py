@@ -96,12 +96,12 @@ def test_quote_failures_are_no_evidence():
     assert one(quote="").note == "인용문 없음"
     c = one(no="□9 1.")
     assert c.hold_code == "AI_NO_EVIDENCE" and "이 묶음에 없음" in c.note
-    c = one(quote="냉매배관 파이프는", value="동관", op="=", unit="")             # 글자 값이 인용문에 없음 (Codex 3-1)
+    c = one(quote="냉매배관 파이프는", value="동관", op="=", unit="")             # 글자 값이 인용문에 없음
     assert c.hold_code == "AI_NO_EVIDENCE" and "글자 값" in c.note
     assert one(quote="냉매배관 파이프는", value="냉매배관 파이프", op="=", unit="").hold_code is None
 
 
-def test_text_value_and_glued_value():                                       # 2026-11-26 Codex 3-1
+def test_text_value_and_glued_value():                                       # 2026-11-26
     assert one(quote="냉매배관 파이프는", value="냉매배관  파이프", op="=", unit="").hold_code is None   # 공백 차이 무시
     for kw in (dict(value="2m"), dict(no="□2 7. 라. (3)", value="50 ㎜", quote="(최소 50 ㎜ 이격)")):
         c = one(unit="", **kw)                                                    # 인용문에 있는 글자라 G2는 통과
@@ -123,7 +123,7 @@ def test_range_value_is_out_of_domain():                                     # �
     assert c.hold_code == "AI_OUT_OF_DOMAIN" and "두 규칙" in c.note
     assert checks.check_range("1/50 ～ 1/100") and checks.check_range("1/50") is None
     assert checks.check_range("동관~황동관") is None                                # 숫자 범위가 아님
-    for v in ("1.5-2", "1.5 내지 2", "1/50-1/100"):                                # Codex 3-2
+    for v in ("1.5-2", "1.5 내지 2", "1/50-1/100"):                                # 범위 표기
         assert checks.check_range(v), v
     assert checks.check_range("-10") is None                                      # 음수
     c = one(value="1.5 내지 2", quote="1.5 내지 2 m 간격")
@@ -168,7 +168,7 @@ def test_method_row_format_failures_are_out_of_domain():
     assert c.hold_code == "AI_NO_EVIDENCE" and "REUSE_PIPE" in c.note
     assert method(value="REPLACE_AFTER_DEMO", quote="철거 전 현장 철거 요구사항 사전 협의").hold_code is None
     c = one(no="□2 3. 아.", item="냉매 배관", attr="공사 방식", op="=", value="REUSE_PIPE", unit="",
-            quote="1.5～2m 간격으로 지지(지탱)해 주어야 한다")                     # 배관 지지 문장 (Codex 3-3)
+            quote="1.5～2m 간격으로 지지(지탱)해 주어야 한다")                     # 배관 지지 문장
     assert c.hold_code == "AI_NO_EVIDENCE" and "근거 말" in c.note
     assert checks.check_quote("기존 냉매배관을 사용을하고", "기존 냉매배관을 사용을하고", "REUSE_PIPE", "공사 방식") is None  # R-05
     assert method(quote="기존 배관 철거 후 신설").hold_code == "AI_NO_EVIDENCE"      # G2가 먼저
@@ -198,7 +198,7 @@ def test_prompt_example_passes_checks():
             assert f() is None, r
 
 
-# ---- clause_no 맞추기 (2026-11-26 결정, Codex 2-2) ----
+# ---- clause_no 맞추기 (2026-11-26 결정) ----
 
 def tree_task():
     clauses = {"3.": "3. 배관\n아. 1.5～2m 간격으로 지지한다.\n자. 방수처리를 한다.",
@@ -333,7 +333,7 @@ def test_prepare_splits_long_clause(tmp_path):
     tasks = MODULE.prepare(ctx, doc)
     assert len(tasks) > 1 and "[[1.]] (이어짐)" in tasks[1].parts[0].text
     assert tasks[0].private["owned"] == ["1."] and tasks[1].private["owned"] == []
-    assert all(ctx.count_tokens(t.parts[0].text) <= 120 for t in tasks)          # 머리말 포함 한도 안 (Codex 4-3)
+    assert all(ctx.count_tokens(t.parts[0].text) <= 120 for t in tasks)          # 머리말 포함 한도 안
 
 
 def test_prepare_errors(tmp_path):

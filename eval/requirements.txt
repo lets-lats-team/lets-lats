@@ -1,11 +1,11 @@
-# 평가 도구와 테스트 (worker 의존성 포함)
+# Evaluation tools and tests (includes worker dependencies)
 -r ../worker/requirements.txt
-# 실제 모델 호출 (키는 환경 변수 ANTHROPIC_API_KEY · OPENAI_API_KEY로만)
+# Real model calls (keys only via ANTHROPIC_API_KEY / OPENAI_API_KEY environment variables)
 anthropic==2.13.0
 openai==3.58.0
 httpx==0.28.1
 httpx2==2.13.1
-# Vision 시험 키트
+# Vision test kit
 ezdxf==1.4.5
 matplotlib==3.11.2
 pillow==12.3.0

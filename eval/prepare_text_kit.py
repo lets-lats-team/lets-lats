@@ -233,7 +233,7 @@ def main() -> None:
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
-    manifest = {"kit": "text_v0.1", "source_root": "실전프로젝트/03_수집_3년", "sets": []}
+    manifest = {"kit": "text_v0.1", "source_root": "$LETS_DATA_ROOT/03_수집_3년", "sets": []}
     for notice, year, reason in SETS:
         folder = find_folder(notice, year)
         set_dir = args.out / "sets" / notice

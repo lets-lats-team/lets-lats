@@ -170,7 +170,7 @@ def test_pipeline_cross_check_disagree(boq):
 
 
 def test_rule_qty_sheet_holds_and_keeps_model_answer(boq):
-    """결정 (가): 일위대가를 Y로 답해도 코드가 보류하고, 모델 답은 후보에 남는다 (Codex 3-1)."""
+    """결정 (가): 일위대가를 Y로 답해도 코드가 보류하고, 모델 답은 후보에 남는다."""
     sheets = {**SHEETS, "일위대가": ("일위대가", "Y")}
     res = run_l2(boq, _answering_caller(sheets, COLS, ROWS), "m1")
     u = {s.name: s for s in res.sheets}["일위대가"]
@@ -190,7 +190,7 @@ def test_rule_qty_sheet_each_rule():
 
 
 def test_items_blocked_when_qty_column_held(boq):
-    """Codex 3-2: 수량 열이 AI_DISAGREE면 품목을 내보내지 않는다. 행 분류는 남긴다."""
+    """수량 열이 AI_DISAGREE면 품목을 내보내지 않는다. 행 분류는 남긴다."""
     base = _answering_caller(SHEETS, COLS, ROWS)
 
     def call(task, model):
@@ -225,7 +225,7 @@ def _sheet(tmp_path, rows):
 
 
 def test_header_accepts_pummok(tmp_path):
-    """Codex 1-2: '품목'·'품목명'도 품명 머리글로 본다."""
+    """'품목'·'품목명'도 품명 머리글로 본다."""
     sh = _sheet(tmp_path, [["공사명"], [None, "품 목", "규격", "단위", "수량"], [None, "전기히트펌프", "", "대", 1]])
     assert detect_header(sh).label == "2"
     sh = _sheet(tmp_path, [[None, "품목명", "단위", "수량"]])
@@ -233,7 +233,7 @@ def test_header_accepts_pummok(tmp_path):
 
 
 def test_header_diagnosis_is_specific(tmp_path):
-    """Codex 3-3 + 결정 (나): 무엇이 어디에 있었는지, 간이 양식이면 지원하지 않음을 메모에."""
+    """결정 (나): 무엇이 어디에 있었는지, 간이 양식이면 지원하지 않음을 메모에."""
     sh = _sheet(tmp_path, [["견적서"], [None, "품명", "수량", "금액"], [None, "냉난방기", "14대", 0], ["단위: 원"]])
     assert detect_header(sh) is None
     msg = header_diagnosis(sh)

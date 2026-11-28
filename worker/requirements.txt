@@ -1,8 +1,8 @@
-# worker AI 역할(L2·L3) 실행 의존성 (2026-11-26, Python 3.12에서 시험)
-openpyxl==3.1.5          # L2 내역서 xlsx
-xlrd==2.0.2              # L2 옛 형식 xls
+# Worker AI role (L2, L3) runtime dependencies. Tested on Python 3.12. Pin exact versions (==).
+openpyxl==3.1.5          # L2 BOQ .xlsx
+xlrd==2.0.2              # L2 legacy .xls
 olefile==0.47
-pymupdf==1.28.2          # L3 PDF 글자층
-hwp-hwpx-parser==1.0.0   # L3 HWP·HWPX
-pydantic==2.14.1         # 역할 모듈 계약
+pymupdf==1.28.2          # L3 PDF text layer
+hwp-hwpx-parser==1.0.0   # L3 HWP/HWPX
+pydantic==2.14.1         # role module contract
 jsonschema==4.26.0

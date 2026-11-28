@@ -2,8 +2,7 @@
 results/
 work/
 data/
-codex/
-gemini/
+review/
 *.hwp
 *.hwpx
 *.pdf
